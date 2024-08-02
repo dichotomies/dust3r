@@ -4,7 +4,8 @@
 # --------------------------------------------------------
 # Initialization functions for global alignment
 # --------------------------------------------------------
-from functools import cache
+# from functools import cache
+from functools import lru_cache
 
 import numpy as np
 import scipy.sparse as sp
@@ -239,7 +240,8 @@ def estimate_focal(pts3d_i, pp=None):
     return float(focal)
 
 
-@cache
+# @cache
+@lru_cache(maxsize=None)
 def pixel_grid(H, W):
     return np.mgrid[:W, :H].T.astype(np.float32)
 
